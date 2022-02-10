@@ -1,2 +1,2 @@
 # demo_project
-This is demo projject for my DevOps course
+This is demo project for my DevOps course
