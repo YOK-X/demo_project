@@ -35,7 +35,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mysql-secret
-                  key: mysql-root-password
+                  key: mysql-password
             - name: WORDPRESS_DB_USER
               valueFrom:
                 secretKeyRef:
@@ -67,8 +67,8 @@ metadata:
   name: wordpress
 spec:
   ports:
-    - name: "8000"
-      port: 8000
+    - name: "8089"
+      port: 8089
       targetPort: 80
   selector:
     io.kompose.service: wordpress
