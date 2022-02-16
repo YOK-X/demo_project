@@ -34,7 +34,7 @@ pipeline {
 
         stage('Scan with trivy') {
             steps {
-                sh 'trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL yok007/wordpress:latest'
+                sh 'trivy --no-progress --exit-code 0 --severity HIGH,CRITICAL yok007/wordpress:latest'
             }
         }
 
