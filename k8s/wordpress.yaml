@@ -41,7 +41,7 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: mysql-username
-          image: yok007/wp_custom_2.0:latest
+          image: yok007/wordpress:latest
           name: wordpress
           ports:
             - containerPort: 80
