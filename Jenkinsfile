@@ -27,7 +27,7 @@ pipeline {
             steps {
                 echo ' ============== start building image =================='
                 dir ('docker') {
-                    sh 'docker build -t yok007/web-server:latest . '
+                    sh 'docker build -t yok007/wordpress:latest . '
                 }
             }
         }
@@ -52,7 +52,7 @@ pipeline {
         stage('docker push') {
             steps {
                 echo ' ============== start pushing image =================='
-                    sh '''docker push yok007/web-server'''
+                    sh '''docker push yok007/wordpress:latest'''
             }
         }
 
