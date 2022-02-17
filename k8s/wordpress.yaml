@@ -75,17 +75,21 @@ spec:
 status:
   loadBalancer: {}
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
 metadata:
   labels:
-    io.kompose.service: wp-data
+    io.kompose.service: db-data
   name: wp-data
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
-status: {}
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  encrypted: "true" # if encryption required
+volumeBindingMode: WaitForFirstConsumer
+allowedTopologies:
+- matchLabelExpressions:
+  - key: failure-domain.beta.kubernetes.io/zone
+    values:
+    - eu-west-2c # this is the availability zone, will depend on your cloud provider
+    # multi-az can be added, but that defeats the purpose in our scenario
 
