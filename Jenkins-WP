@@ -1,0 +1,21 @@
+pipeline {
+     environment {
+          withAWS(credentials: 'awscredentials')
+      }
+
+agent any
+
+    stage('Deploy App') {
+      // Deploy app to AWS EKS, authentication is done with kubeconfig, that is stored as secret file credential in Jenkins
+      steps {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'kubectl apply -f k8s/secret.yaml'
+            sh 'kubectl apply -f k8s'
+        }
+      }
+    }
+
+
+
+
+}
