@@ -4,8 +4,9 @@ pipeline {
           AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
       }
 
-agent any
-
+  agent any
+  
+  stages{
     stage('Deploy App') {
       // Deploy app to AWS EKS, authentication is done with kubeconfig, that is stored as secret file credential in Jenkins
       steps {
@@ -15,4 +16,5 @@ agent any
         }
       }
     }
+  }
 }
