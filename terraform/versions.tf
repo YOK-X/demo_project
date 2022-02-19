@@ -1,10 +1,9 @@
 terraform {
   backend "s3" {
-    profile = "Administrator"
-    bucket = "my-terraform-states-s3"
-    encrypt = true
-    key    = "AWS/Dev/terraform-states/terraform.tfstate"
-    region = "us-east-2"
+    bucket         = "my-terraform-states-s3"
+    encrypt        = true
+    key            = "AWS/Dev/terraform-states/terraform.tfstate"
+    region         = "us-east-2"
     dynamodb_table = "terraform_state_aws_us_east_2"
   }
   required_providers {
@@ -35,4 +34,11 @@ terraform {
   }
 
   required_version = ">= 0.14"
+}
+
+provider "aws" {
+  region = "us-east-2"
+  shared_config_files     = "~/.aws/config"
+  shared_credentials_files= "~/.aws/credentials"
+  profile                 = "Administrator"
 }
