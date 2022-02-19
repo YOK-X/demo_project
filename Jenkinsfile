@@ -23,7 +23,7 @@ pipeline {
                 }
         }
 
-        stage('create docker image') {
+        stage('Create docker image') {
             steps {
                 echo ' ============== start building image =================='
                 dir ('docker') {
@@ -38,7 +38,7 @@ pipeline {
             }
         }
 
-        stage("docker login") {
+        stage("Docker login") {
             steps {
                 echo " ============== docker login =================="
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -49,17 +49,10 @@ pipeline {
             }
         }
 
-        stage('docker push') {
+        stage('Docker push') {
             steps {
                 echo ' ============== start pushing image =================='
                     sh '''docker push yok007/wordpress:latest'''
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo ' ============== start docker-compose =================='
-                    sh 'docker-compose -f docker/docker-compose.yml up -d'
             }
         }
 
