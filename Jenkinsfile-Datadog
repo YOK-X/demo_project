@@ -1,7 +1,4 @@
 pipeline {
-  environment {
-          datadog_apiKey = credentials('datadog.key')
-      }
 
   agent any
 
