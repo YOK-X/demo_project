@@ -29,7 +29,7 @@ services:
   wordpress:
     depends_on:
       - db
-    image: yok007/wordpress:latest
+    image: yok007/wordpress:demo
     ports:
       - '8000:80'
     restart: always

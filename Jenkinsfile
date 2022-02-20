@@ -27,14 +27,14 @@ pipeline {
             steps {
                 echo ' ============== start building image =================='
                 dir ('docker') {
-                    sh 'docker build -t yok007/wordpress:latest . '
+                    sh 'docker build -t yok007/wordpress:demo . '
                 }
             }
         }
 
         stage('Scan with trivy') {
             steps {
-                sh 'trivy --no-progress --exit-code 0 --severity HIGH,CRITICAL yok007/wordpress:latest'
+                sh 'trivy --no-progress --exit-code 0 --severity HIGH,CRITICAL yok007/wordpress:demo'
             }
         }
 
@@ -52,7 +52,7 @@ pipeline {
         stage('Docker push') {
             steps {
                 echo ' ============== start pushing image =================='
-                    sh '''docker push yok007/wordpress:latest'''
+                    sh '''docker push yok007/wordpress:demo'''
             }
         }
 
