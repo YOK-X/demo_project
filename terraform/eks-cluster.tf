@@ -9,20 +9,20 @@ module "eks" {
 
   workers_group_defaults = {
     root_volume_type = "gp2"
-    root_volume_size = "5"
+    root_volume_size = "4"
   }
 
   worker_groups = [
     {
       name                          = "worker-group-1"
-      instance_type                 = "t3.medium"
+      instance_type                 = "t3.small"
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
       asg_desired_capacity          = 2
     },
     {
       name                          = "worker-group-2"
-      instance_type                 = "t3.medium"
+      instance_type                 = "t3.small"
       additional_userdata           = "echo foo bar"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
       asg_desired_capacity          = 1
