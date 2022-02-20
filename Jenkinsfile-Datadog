@@ -19,7 +19,7 @@ pipeline {
     stage('Helm deploy Datadog') {
       // Deploy DataDog to AWS EKS using Helm with kubeconfig, that is stored as secret file credential in Jenkins
       steps {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+          withCredentials([file(credentialsId: 'awskubeconfig', variable: 'KUBECONFIG')]) {
                 sh '''
                     helm install datadog -f datadog-values.yaml --set datadog.site='datadoghq.com' --set datadog.apiKey=${datadog_apiKey} datadog/datadog
                 '''
