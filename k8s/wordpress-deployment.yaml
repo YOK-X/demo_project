@@ -35,7 +35,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: yok007/wordpress
+      app: wordpress
       tier: frontend
   strategy:
     type: Recreate
@@ -54,7 +54,7 @@ spec:
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: secret
+              name: mysql-secret
               key: mysql-root-password
         ports:
         - containerPort: 80
