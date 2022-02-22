@@ -52,7 +52,10 @@ spec:
         - name: WORDPRESS_DB_HOST
           value: wordpress-mysql
         - name: WORDPRESS_DB_PASSWORD
-          value: qwe123
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: mysql-root-password
         ports:
         - containerPort: 80
           name: wordpress
