@@ -53,7 +53,6 @@ spec:
             secretKeyRef:
               name: mysecret
               key: mysql-root-password
-          value: qwe123
         ports:
         - containerPort: 3306
           name: mysql
